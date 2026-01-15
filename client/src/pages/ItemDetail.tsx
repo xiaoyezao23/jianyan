@@ -16,7 +16,17 @@ import {
   Beaker,
   Droplet,
   Copy,
-  CheckCircle
+  CheckCircle,
+  User,
+  Utensils,
+  Pill,
+  Activity,
+  ListOrdered,
+  Timer,
+  Wrench,
+  Snowflake,
+  AlertCircle,
+  XCircle
 } from "lucide-react";
 import { Link, useLocation, useParams } from "wouter";
 
@@ -30,7 +40,40 @@ const TUBE_COLOR_STYLES: Record<string, { bg: string; text: string; border: stri
   "黄": { bg: "bg-yellow-100", text: "text-yellow-700", border: "border-yellow-300" },
   "橙": { bg: "bg-orange-100", text: "text-orange-700", border: "border-orange-300" },
   "橘": { bg: "bg-orange-100", text: "text-orange-700", border: "border-orange-300" },
+  "黑": { bg: "bg-gray-800", text: "text-gray-100", border: "border-gray-600" },
 };
+
+// 信息项组件
+function InfoItem({ icon: Icon, label, value, className = "" }: { 
+  icon: React.ElementType; 
+  label: string; 
+  value: string | null | undefined;
+  className?: string;
+}) {
+  if (!value) return null;
+  return (
+    <div className={`flex items-start gap-3 ${className}`}>
+      <Icon className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+      <div>
+        <p className="text-xs font-medium text-muted-foreground">{label}</p>
+        <p className="text-sm text-foreground">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+// 拒收标准项组件
+function RejectionItem({ type, desc }: { type: string; desc: string }) {
+  return (
+    <div className="flex items-start gap-2 py-2 border-b border-red-100 last:border-0">
+      <XCircle className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
+      <div>
+        <p className="text-sm font-medium text-red-700">{type}</p>
+        <p className="text-xs text-red-600">{desc}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function ItemDetail() {
   const params = useParams<{ itemId: string }>();
@@ -98,7 +141,10 @@ export default function ItemDetail() {
       item.tubeColor ? `采血管: ${item.tubeColor}管` : null,
       item.tubeAdditive ? `添加剂: ${item.tubeAdditive}` : null,
       item.recommendedVolume ? `采样量: ${item.recommendedVolume}` : null,
+      item.fastingRequirement ? `空腹要求: ${item.fastingRequirement}` : null,
+      item.collectionSequence ? `采血顺序: ${item.collectionSequence}` : null,
       item.storageTemp ? `保存温度: ${item.storageTemp}` : null,
+      item.storageLimit ? `保存时限: ${item.storageLimit}` : null,
       item.transportLimit ? `转运时限: ${item.transportLimit}` : null,
     ].filter(Boolean).join("\n");
 
@@ -136,6 +182,33 @@ export default function ItemDetail() {
       .filter(([key]) => key !== "raw")
       .map(([key, value]) => `${key}: ${value}`);
   }
+
+  // 解析拒收标准详情
+  let rejectionDetailsList: { type: string; desc: string }[] = [];
+  if (item.rejectionDetails) {
+    try {
+      rejectionDetailsList = Array.isArray(item.rejectionDetails) 
+        ? item.rejectionDetails 
+        : JSON.parse(item.rejectionDetails as string);
+    } catch (e) {
+      // 忽略解析错误
+    }
+  }
+
+  // 检查是否有患者准备信息
+  const hasPatientPrep = item.fastingRequirement || item.dietaryRestrictions || 
+    item.medicationNotes || item.positionRequirement || item.prepSummary;
+
+  // 检查是否有采集注意事项
+  const hasCollectionNotes = item.collectionSequence || item.collectionTiming || 
+    item.operationNotes || item.collectionRequirements;
+
+  // 检查是否有保存转运信息
+  const hasStorageInfo = item.storageTemp || item.storageLimit || 
+    item.transportLimit || item.specialRequirements;
+
+  // 检查是否有拒收标准
+  const hasRejectionInfo = item.rejectionSummary || rejectionDetailsList.length > 0;
 
   return (
     <div className="min-h-screen bg-muted/30 pb-20">
@@ -227,51 +300,110 @@ export default function ItemDetail() {
           </CardContent>
         </Card>
 
-        {/* 采样要求 */}
-        {(item.collectionRequirements || item.prepSummary || item.handlingSummary) && (
-          <Card className="detail-card">
+        {/* 患者准备 - V1.0.1 新增 */}
+        {hasPatientPrep && (
+          <Card className="detail-card border-cyan-200 bg-cyan-50/30">
             <CardHeader className="detail-card-header p-0 pb-3">
-              <TestTube className="h-4 w-4 text-primary" />
-              <span>采样要求</span>
+              <User className="h-4 w-4 text-cyan-600" />
+              <span className="text-cyan-700">患者准备</span>
             </CardHeader>
             <CardContent className="p-0 space-y-3">
-              {item.collectionRequirements && (
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">采集要求</p>
-                  <p className="text-sm">{item.collectionRequirements}</p>
-                </div>
-              )}
-              {item.prepSummary && (
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">患者准备</p>
-                  <p className="text-sm">{item.prepSummary}</p>
-                </div>
-              )}
-              {item.handlingSummary && (
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">特殊处理</p>
-                  <p className="text-sm">{item.handlingSummary}</p>
-                </div>
+              <InfoItem 
+                icon={Utensils} 
+                label="空腹要求" 
+                value={item.fastingRequirement} 
+              />
+              <InfoItem 
+                icon={AlertCircle} 
+                label="饮食禁忌" 
+                value={item.dietaryRestrictions} 
+              />
+              <InfoItem 
+                icon={Pill} 
+                label="停药要求" 
+                value={item.medicationNotes} 
+              />
+              <InfoItem 
+                icon={Activity} 
+                label="体位要求" 
+                value={item.positionRequirement} 
+              />
+              {item.prepSummary && !item.fastingRequirement && (
+                <InfoItem 
+                  icon={User} 
+                  label="准备说明" 
+                  value={item.prepSummary} 
+                />
               )}
             </CardContent>
           </Card>
         )}
 
-        {/* 保存与转运 */}
-        {(item.storageTemp || item.transportLimit) && (
-          <Card className="detail-card">
+        {/* 采集注意事项 - V1.0.1 新增 */}
+        {hasCollectionNotes && (
+          <Card className="detail-card border-emerald-200 bg-emerald-50/30">
             <CardHeader className="detail-card-header p-0 pb-3">
-              <Thermometer className="h-4 w-4 text-primary" />
-              <span>保存与转运</span>
+              <TestTube className="h-4 w-4 text-emerald-600" />
+              <span className="text-emerald-700">采集注意事项</span>
+            </CardHeader>
+            <CardContent className="p-0 space-y-3">
+              <InfoItem 
+                icon={ListOrdered} 
+                label="采血顺序" 
+                value={item.collectionSequence} 
+              />
+              <InfoItem 
+                icon={Timer} 
+                label="采集时机" 
+                value={item.collectionTiming} 
+              />
+              <InfoItem 
+                icon={Wrench} 
+                label="操作要点" 
+                value={item.operationNotes} 
+              />
+              {item.collectionRequirements && (
+                <InfoItem 
+                  icon={TestTube} 
+                  label="采集要求" 
+                  value={item.collectionRequirements} 
+                />
+              )}
+              {item.handlingSummary && (
+                <InfoItem 
+                  icon={AlertCircle} 
+                  label="特殊处理" 
+                  value={item.handlingSummary} 
+                />
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* 保存与转运 - V1.0.1 扩展 */}
+        {hasStorageInfo && (
+          <Card className="detail-card border-blue-200 bg-blue-50/30">
+            <CardHeader className="detail-card-header p-0 pb-3">
+              <Thermometer className="h-4 w-4 text-blue-600" />
+              <span className="text-blue-700">保存与转运</span>
             </CardHeader>
             <CardContent className="p-0">
               <div className="grid grid-cols-2 gap-4">
                 {item.storageTemp && (
                   <div className="flex items-center gap-2">
-                    <Thermometer className="h-4 w-4 text-blue-500" />
+                    <Snowflake className="h-4 w-4 text-blue-500" />
                     <div>
                       <p className="text-xs text-muted-foreground">保存温度</p>
                       <p className="text-sm font-medium">{item.storageTemp}</p>
+                    </div>
+                  </div>
+                )}
+                {item.storageLimit && (
+                  <div className="flex items-center gap-2">
+                    <Timer className="h-4 w-4 text-blue-500" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">保存时限</p>
+                      <p className="text-sm font-medium">{item.storageLimit}</p>
                     </div>
                   </div>
                 )}
@@ -285,6 +417,15 @@ export default function ItemDetail() {
                   </div>
                 )}
               </div>
+              {item.specialRequirements && (
+                <div className="mt-3 pt-3 border-t">
+                  <InfoItem 
+                    icon={AlertCircle} 
+                    label="特殊要求" 
+                    value={item.specialRequirements} 
+                  />
+                </div>
+              )}
             </CardContent>
           </Card>
         )}
@@ -306,15 +447,27 @@ export default function ItemDetail() {
           </Card>
         )}
 
-        {/* 拒收标准 */}
-        {item.rejectionSummary && (
+        {/* 拒收标准 - V1.0.1 扩展 */}
+        {hasRejectionInfo && (
           <Card className="detail-card border-red-200 bg-red-50/50">
             <CardHeader className="detail-card-header p-0 pb-3">
               <AlertTriangle className="h-4 w-4 text-red-500" />
               <span className="text-red-700">拒收标准</span>
             </CardHeader>
             <CardContent className="p-0">
-              <p className="text-sm text-red-700">{item.rejectionSummary}</p>
+              {rejectionDetailsList.length > 0 ? (
+                <div className="space-y-0">
+                  {rejectionDetailsList.map((rejection, index) => (
+                    <RejectionItem 
+                      key={index} 
+                      type={rejection.type} 
+                      desc={rejection.desc} 
+                    />
+                  ))}
+                </div>
+              ) : item.rejectionSummary ? (
+                <p className="text-sm text-red-700">{item.rejectionSummary}</p>
+              ) : null}
             </CardContent>
           </Card>
         )}

@@ -45,6 +45,18 @@ export const items = mysqlTable("items", {
   handlingSummary: text("handlingSummary"), // 特殊处理摘要
   rejectionSummary: text("rejectionSummary"), // 拒收标准
   prepSummary: text("prepSummary"), // 患者准备摘要
+  
+  // V1.0.1 新增字段
+  fastingRequirement: varchar("fastingRequirement", { length: 200 }), // 空腹要求
+  dietaryRestrictions: text("dietaryRestrictions"), // 饮食禁忌
+  medicationNotes: text("medicationNotes"), // 停药要求
+  positionRequirement: varchar("positionRequirement", { length: 100 }), // 体位要求
+  collectionSequence: varchar("collectionSequence", { length: 200 }), // 采血顺序
+  collectionTiming: varchar("collectionTiming", { length: 200 }), // 采集时机
+  operationNotes: text("operationNotes"), // 操作要点
+  storageLimit: varchar("storageLimit", { length: 100 }), // 保存时限
+  specialRequirements: text("specialRequirements"), // 特殊要求（避光、防震等）
+  rejectionDetails: json("rejectionDetails"), // 拒收标准详情 [{“type”:”溶血”,”desc”:”...”}]
   tubeImageUrls: json("tubeImageUrls"), // 采集管图片
   containerImageUrls: json("containerImageUrls"), // 容器图片
   frequencyScore: int("frequencyScore").default(0), // 使用频率

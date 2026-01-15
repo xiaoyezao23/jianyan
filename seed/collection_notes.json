@@ -1,0 +1,242 @@
+{
+  "specimenTypeNotes": {
+    "血液": {
+      "fastingRequirement": "空腹8-12小时",
+      "dietaryRestrictions": "采血前2周保持平常饮食习惯，采血前24h内不饮酒、不做剧烈运动",
+      "positionRequirement": "坐位或卧位",
+      "operationNotes": "止血带结扎不超过1分钟，血流速度不宜过快，避免产生泡沫和溶血",
+      "collectionSequence": "多管采血顺序：血培养瓶→蓝管→黄管/红管→绿管→紫管→灰管",
+      "storageLimit": "2-8℃保存一周",
+      "specialRequirements": "避免在输液同侧采血，输液完毕至少1小时后方能采血",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "采血不顺利、采血不规范、外力作用或全血样本放置时间过久"},
+        {"type": "脂血", "desc": "严重脂血影响检测结果"},
+        {"type": "凝固", "desc": "抗凝样本凝固，血液注入试管后未立刻轻轻摇匀"}
+      ]
+    },
+    "尿液": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "无特殊要求",
+      "operationNotes": "留取中段尿，女性需清洗外阴，男性需翻转包皮清洗尿道口",
+      "collectionTiming": "晨起第一次尿液最佳",
+      "storageLimit": "常温下2小时内送检，2-8℃保存不超过24小时",
+      "specialRequirements": "严格无菌操作，做细菌培养的尿液不得添加防腐剂",
+      "rejectionDetails": [
+        {"type": "污染", "desc": "标本混入消毒剂或其他化学药品"},
+        {"type": "超时", "desc": "延迟送检超过24小时"}
+      ]
+    },
+    "粪便": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "无特殊要求",
+      "operationNotes": "挑取脓血、黏液便2-3g，液体粪便取絮状物2-3ml",
+      "collectionTiming": "腹泻病人在急性期用药前采集",
+      "storageLimit": "1小时内送检，志贺菌培养应在30分钟内送检",
+      "specialRequirements": "标本不能混入尿液、消毒剂及其他化学药品",
+      "rejectionDetails": [
+        {"type": "污染", "desc": "标本被尿液或消毒剂污染"},
+        {"type": "超时", "desc": "超过24小时未送检"}
+      ]
+    },
+    "脑脊液": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "患者应禁食",
+      "positionRequirement": "侧卧位",
+      "operationNotes": "由临床医师以无菌操作行腰椎穿刺",
+      "collectionTiming": "怀疑脑膜炎时在使用抗生素前立即采集",
+      "storageLimit": "15分钟内送至实验室",
+      "specialRequirements": "不能置于冰箱保存，天气寒冷时要注意在35℃保温条件下送检",
+      "rejectionDetails": [
+        {"type": "超时", "desc": "脑膜炎奈瑟菌离体后能产生自溶素而迅速自溶"},
+        {"type": "冷藏", "desc": "标本不能冷藏保存"}
+      ]
+    },
+    "血培养": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "坐位或卧位",
+      "operationNotes": "用75%乙醇消毒瓶盖（不能用碘酒），严格做好抽血部位的消毒及执行无菌操作",
+      "collectionTiming": "寒战前、寒战时或寒战后1小时内采血可获得高的阳性率",
+      "collectionSequence": "同时做需氧和厌氧培养时，先将标本注入厌氧瓶，再注入需氧瓶",
+      "storageLimit": "立即送检，不能立即送检可放置室温，勿放冰箱保存",
+      "specialRequirements": "成人8-10ml/瓶，儿童3-5ml/瓶，婴幼儿1-2ml/瓶",
+      "rejectionDetails": [
+        {"type": "污染", "desc": "采血部位消毒不严格导致污染"},
+        {"type": "冷藏", "desc": "血培养标本不能冷藏保存"}
+      ]
+    }
+  },
+  "tubeColorNotes": {
+    "红管": {
+      "tubeAdditive": "促凝剂",
+      "operationNotes": "采血后静置30分钟待凝固后离心分离血清",
+      "storageLimit": "血清2-8℃保存一周",
+      "specialRequirements": "适用于生化、免疫等血清学检测"
+    },
+    "紫管": {
+      "tubeAdditive": "EDTA-K2抗凝剂",
+      "operationNotes": "采血后立即轻轻颠倒混匀8-10次",
+      "storageLimit": "全血2-8℃保存24小时",
+      "specialRequirements": "适用于血常规、糖化血红蛋白等全血检测"
+    },
+    "蓝管": {
+      "tubeAdditive": "枸橼酸钠抗凝剂（109mmol/L，1:9）",
+      "operationNotes": "采血时止血带不易扎的过紧，压迫时间不易超过1分钟，采血后轻轻颠倒混匀",
+      "collectionSequence": "通常采集第2管血液标本用于凝血方面的检测",
+      "storageLimit": "原则上取血后即送检，2-8℃可保存7天，-20℃可保存3个月",
+      "specialRequirements": "适用于凝血功能检测，拒绝溶血的标本",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "凝血检测拒绝溶血标本"},
+        {"type": "凝固", "desc": "抗凝剂比例不当或混匀不充分导致凝固"}
+      ]
+    },
+    "绿管": {
+      "tubeAdditive": "肝素抗凝剂",
+      "operationNotes": "采血后立即轻轻颠倒混匀",
+      "storageLimit": "全血室温保存不超过4小时",
+      "specialRequirements": "适用于血气分析、急诊生化等"
+    },
+    "黄管": {
+      "tubeAdditive": "促凝剂+分离胶",
+      "operationNotes": "采血后静置30分钟后离心",
+      "storageLimit": "血清2-8℃保存一周",
+      "specialRequirements": "适用于肿瘤标志物、激素等免疫学检测"
+    },
+    "灰管": {
+      "tubeAdditive": "氟化钠+草酸钾",
+      "operationNotes": "采血后立即轻轻颠倒混匀",
+      "storageLimit": "15-25℃保存1天，4-8℃可保存7天",
+      "specialRequirements": "适用于血糖、OGTT等糖代谢检测"
+    },
+    "黑管": {
+      "tubeAdditive": "枸橼酸钠（1:4）",
+      "operationNotes": "采血后立即轻轻颠倒混匀",
+      "storageLimit": "室温保存2小时内送检",
+      "specialRequirements": "适用于血沉检测"
+    }
+  },
+  "projectGroupNotes": {
+    "肝肾功能": {
+      "fastingRequirement": "空腹8-12小时",
+      "dietaryRestrictions": "采血前避免剧烈运动，禁食高糖、咖啡、浓茶类饮料",
+      "positionRequirement": "坐位或卧位",
+      "operationNotes": "止血带结扎过久可引起误差",
+      "storageLimit": "血清2-8℃保存一周",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "严重溶血影响检测结果"},
+        {"type": "脂血", "desc": "严重脂血影响检测结果"},
+        {"type": "黄疸", "desc": "严重黄疸影响检测结果"}
+      ]
+    },
+    "血糖检测": {
+      "fastingRequirement": "空腹8小时，但不长于16小时",
+      "dietaryRestrictions": "禁食咖啡、可乐等高糖类饮料",
+      "positionRequirement": "坐位",
+      "operationNotes": "严禁边静脉输含葡萄糖溶液边采血",
+      "storageLimit": "加入糖分解抑制剂后15-25℃保存1天，4-8℃可保存7天",
+      "rejectionDetails": [
+        {"type": "输液采血", "desc": "在输液同侧或从输液管采血"},
+        {"type": "溶血", "desc": "溶血影响血糖检测结果"}
+      ]
+    },
+    "OGTT": {
+      "fastingRequirement": "空腹12小时",
+      "dietaryRestrictions": "试验前3天每日摄入糖类不低于150g，停用可能影响结果的药物",
+      "positionRequirement": "坐位",
+      "collectionTiming": "服糖前及服糖后0.5h、1h、2h、3h各采血一次",
+      "operationNotes": "整个试验过程中不得吸烟、要禁食、不饮茶和咖啡，可饮水",
+      "storageLimit": "加入糖分解抑制剂后15-25℃保存1天",
+      "specialRequirements": "口服避孕药能影响测定结果，应停服1周再做试验"
+    },
+    "血脂检测": {
+      "fastingRequirement": "空腹12小时",
+      "dietaryRestrictions": "采血前2周保持平常饮食习惯，采血前24h内不饮酒、不做剧烈运动",
+      "medicationNotes": "停用影响血脂的药物（血脂调节药、避孕药、激素等）数天或数周",
+      "positionRequirement": "坐位或卧位",
+      "storageLimit": "血清2-8℃保存3天，-20℃可稳定数周",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "溶血影响血脂检测"},
+        {"type": "脂血", "desc": "严重脂血需要特殊处理"}
+      ]
+    },
+    "凝血功能": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "放松状态，避免剧烈运动",
+      "operationNotes": "采血技术要熟练，最好一针见血，止血带压迫时间不超过1分钟",
+      "collectionSequence": "通常采集第2管血液标本用于凝血方面的检测",
+      "storageLimit": "原则上取血后即送检，2-8℃可保存7天，-20℃可保存3个月",
+      "specialRequirements": "抗凝剂与血液比例为1:9，不能使用过期变质的枸橼酸盐抗凝剂",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "凝血检测拒绝溶血标本"},
+        {"type": "凝固", "desc": "抗凝样本凝固"},
+        {"type": "比例错误", "desc": "抗凝剂与血液比例不正确"}
+      ]
+    },
+    "甲状腺功能": {
+      "fastingRequirement": "建议空腹，非空腹亦可",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "坐位或卧位",
+      "storageLimit": "血清2-8℃保存一周，-20℃保存可稳定1月",
+      "rejectionDetails": [
+        {"type": "溶血", "desc": "溶血影响检测结果"},
+        {"type": "脂血", "desc": "脂血影响检测结果"}
+      ]
+    },
+    "皮质醇": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "采血前不宜服用苯妥英钠、水杨酸钠等",
+      "positionRequirement": "坐位或卧位",
+      "collectionTiming": "早上7:00-9:00、下午15:00-17:00、午夜24:00-2:00三个时间段采血",
+      "storageLimit": "血清2-8℃保存，超过一周可在-20℃保存",
+      "specialRequirements": "皮质醇分泌昼夜节律变化明显，需按时间点采血"
+    },
+    "醛固酮": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "medicationNotes": "留样前应停服利尿剂至少3周，停服抗高血压药物1周",
+      "positionRequirement": "早晨7:00取卧位、上午8点取立位、中午12:00取卧位",
+      "storageLimit": "血清2-8℃保存，超过一周可在-20℃保存",
+      "specialRequirements": "醛固酮分泌立位比卧位多，需按体位要求采血"
+    },
+    "分子诊断": {
+      "fastingRequirement": "建议空腹，晨起采血最佳",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "坐位或卧位",
+      "operationNotes": "送检标本为单人、单项目、单管，不可与其它检测项目共用",
+      "storageLimit": "根据项目不同，2-8℃保存24h-1周，-70℃长期保存",
+      "specialRequirements": "严禁使用肝素抗凝管，标本不宜反复冻融"
+    },
+    "微生物培养": {
+      "fastingRequirement": "无特殊要求",
+      "dietaryRestrictions": "无特殊要求",
+      "positionRequirement": "根据标本类型",
+      "collectionTiming": "使用抗生素前采集",
+      "operationNotes": "严格无菌操作，避免污染",
+      "storageLimit": "立即送检或2小时内送检，室温保存不超过24小时",
+      "specialRequirements": "厌氧菌培养需使用厌氧运送培养基",
+      "rejectionDetails": [
+        {"type": "污染", "desc": "标本被正常菌群污染"},
+        {"type": "超时", "desc": "延迟送检导致病原菌死亡"}
+      ]
+    }
+  },
+  "commonRejectionCriteria": [
+    {"code": "LABEL_ERROR", "type": "标签不合格", "desc": "唯一性标识错误、脱落、丢失、粘贴位置不对"},
+    {"code": "TIMING_ERROR", "type": "采集时机不正确", "desc": "未按要求时间采集，如24小时尿未完全收集、皮质醇未按时间点采血"},
+    {"code": "VOLUME_ERROR", "type": "采集量错误", "desc": "样本量不足以完成检验"},
+    {"code": "TYPE_ERROR", "type": "样本类型错误", "desc": "容器使用错误、需隔绝空气的样本接触空气"},
+    {"code": "CONTAINER_ERROR", "type": "容器错误", "desc": "用错采血管类型"},
+    {"code": "TRANSPORT_TIME", "type": "送检时间不符", "desc": "超过规定送检时间"},
+    {"code": "INFO_ERROR", "type": "信息不正确", "desc": "患者信息与检验项目不匹配"},
+    {"code": "HEMOLYSIS", "type": "严重溶血", "desc": "采血不规范或保存不当导致"},
+    {"code": "LIPEMIA", "type": "严重脂血", "desc": "影响检测结果"},
+    {"code": "CLOTTED", "type": "抗凝样本凝固", "desc": "未及时混匀或抗凝剂不足"},
+    {"code": "TRANSPORT_TEMP", "type": "运输温度错误", "desc": "未按要求温度运输"},
+    {"code": "DUPLICATE", "type": "重复开单", "desc": "同一时间开具相同检测项目"},
+    {"code": "CONTAMINATED", "type": "污染", "desc": "标本被污染"},
+    {"code": "EXPIRED", "type": "超时", "desc": "超过规定保存时间"}
+  ]
+}
