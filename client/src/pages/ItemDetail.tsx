@@ -215,7 +215,7 @@ export default function ItemDetail() {
       {/* 顶部导航 */}
       <header className="bg-background border-b sticky top-0 z-50">
         <div className="container flex items-center justify-between h-14">
-          <Button variant="ghost" size="icon" onClick={() => window.history.back()}>
+          <Button variant="ghost" size="icon" onClick={() => { window.history.length > 1 ? window.history.back() : navigate('/'); }}>
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <h1 className="font-semibold truncate flex-1 text-center px-4">
