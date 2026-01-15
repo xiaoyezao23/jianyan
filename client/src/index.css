@@ -43,10 +43,13 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
+  /* 医疗风格 - 柔和蓝绿色调 */
+  --primary: oklch(0.55 0.2 220); /* 医疗蓝 */
+  --primary-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.5 0.18 220);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.55 0.15 165); /* 医疗绿 */
+  --secondary-foreground: oklch(1 0 0);
   --chart-1: var(--color-blue-300);
   --chart-2: var(--color-blue-500);
   --chart-3: var(--color-blue-600);
@@ -171,7 +174,102 @@
     .container {
       padding-left: 2rem; /* 32px - desktop padding */
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
+    max-width: 1280px; /* Standard content width */
   }
+}
+
+/* 管色标签样式 */
+.tube-tag {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+}
+
+.tube-tag-紫 {
+  background-color: oklch(0.9 0.05 300);
+  color: oklch(0.4 0.15 300);
+}
+
+.tube-tag-蓝 {
+  background-color: oklch(0.92 0.04 240);
+  color: oklch(0.4 0.15 240);
+}
+
+.tube-tag-绿 {
+  background-color: oklch(0.92 0.04 145);
+  color: oklch(0.4 0.12 145);
+}
+
+.tube-tag-灰 {
+  background-color: oklch(0.92 0 0);
+  color: oklch(0.4 0 0);
+}
+
+.tube-tag-红 {
+  background-color: oklch(0.92 0.05 25);
+  color: oklch(0.45 0.18 25);
+}
+
+.tube-tag-黄 {
+  background-color: oklch(0.95 0.08 90);
+  color: oklch(0.45 0.12 80);
+}
+
+.tube-tag-橙, .tube-tag-橘 {
+  background-color: oklch(0.93 0.07 55);
+  color: oklch(0.45 0.15 45);
+}
+
+/* 样本类型标签 */
+.specimen-tag {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  background-color: oklch(0.95 0.03 180);
+  color: oklch(0.4 0.1 180);
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+  @apply transition-all duration-200;
+}
+.card-hover:hover {
+  @apply shadow-md;
+  border-color: oklch(0.55 0.2 220 / 0.3);
+}
+
+/* 医疗风格渐变背景 */
+.medical-gradient {
+  background: linear-gradient(135deg, oklch(0.55 0.2 220 / 0.08) 0%, oklch(0.55 0.15 165 / 0.08) 100%);
+}
+
+/* 搜索框样式 */
+.search-input {
+  @apply w-full px-4 py-3 pl-12 text-base border rounded-xl bg-background transition-all;
+}
+.search-input:focus {
+  @apply outline-none ring-2;
+  --tw-ring-color: oklch(0.55 0.2 220 / 0.5);
+  border-color: oklch(0.55 0.2 220);
+}
+
+/* 详情页卡片 */
+.detail-card {
+  @apply bg-card rounded-xl border p-4 mb-4;
+}
+
+.detail-card-header {
+  @apply flex items-center gap-2 text-sm font-semibold text-foreground mb-3 pb-2 border-b;
+}
+
+.detail-card-content {
+  @apply text-sm text-muted-foreground space-y-2;
+}
+
+/* 底部导航 */
+.bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 bg-background border-t;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 安全区域适配 */
+.safe-area-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+}
 }
