@@ -15,6 +15,13 @@
       "when": 1768458198738,
       "tag": "0001_blue_iron_monger",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768460061644,
+      "tag": "0002_lowly_scarlet_witch",
+      "breakpoints": true
     }
   ]
 }

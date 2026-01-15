@@ -1,0 +1,1 @@
+ALTER TABLE `items` MODIFY COLUMN `itemName` varchar(500) NOT NULL;

@@ -24,7 +24,7 @@ export type InsertUser = typeof users.$inferInsert;
 export const items = mysqlTable("items", {
   id: int("id").autoincrement().primaryKey(),
   itemId: varchar("itemId", { length: 32 }).notNull(), // LAB000001 格式
-  itemName: varchar("itemName", { length: 200 }).notNull(), // 项目名称
+  itemName: varchar("itemName", { length: 500 }).notNull(), // 项目名称
   itemGroup: varchar("itemGroup", { length: 200 }), // 检验项目组套
   specimenType: varchar("specimenType", { length: 50 }).notNull(), // 样本类型
   containerType: varchar("containerType", { length: 100 }), // 标本容器
