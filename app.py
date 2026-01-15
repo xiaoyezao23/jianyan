@@ -4,7 +4,7 @@ Main Flask application for uploading and searching laboratory documents
 """
 
 import os
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 from search_engine import SearchEngine
 
@@ -94,4 +94,7 @@ def list_documents():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Note: Debug mode should be disabled in production
+    # Set FLASK_DEBUG=0 environment variable for production deployment
+    debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)

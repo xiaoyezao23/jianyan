@@ -6,7 +6,7 @@ Handles document indexing and searching using Whoosh
 import os
 from whoosh import index
 from whoosh.fields import Schema, TEXT, ID, DATETIME
-from whoosh.qparser import QueryParser, MultifieldParser
+from whoosh.qparser import MultifieldParser
 from whoosh.writing import AsyncWriter
 from datetime import datetime
 import PyPDF2
@@ -72,13 +72,17 @@ class SearchEngine:
         content = self.extract_text(filepath)
         
         writer = AsyncWriter(self.ix)
-        writer.update_document(
-            path=filepath,
-            filename=filename,
-            content=content,
-            timestamp=datetime.now()
-        )
-        writer.commit()
+        try:
+            writer.update_document(
+                path=filepath,
+                filename=filename,
+                content=content,
+                timestamp=datetime.now()
+            )
+            writer.commit()
+        except Exception:
+            writer.cancel()
+            raise
     
     def search(self, query_string, limit=10):
         """Search for documents matching query"""
